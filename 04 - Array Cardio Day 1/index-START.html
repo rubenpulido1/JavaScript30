@@ -38,17 +38,31 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    let inventorsFifteen = inventors.filter(inventor => inventor.year < 1600);
+    console.log(inventorsFifteen);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+    let inventorsNames = inventors.map(inventor =>  inventor.first + " " + inventor.last);
+    console.log(inventorsNames);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    let inventorsSorted =  inventors.sort((a,b) => b.year - a.year);
+    console.log(inventorsSorted);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    let inventorsReduced = inventors.reduce((acc, inventor) => acc + inventor.passed - inventor.year, 0);
+    console.log(inventorsReduced);
 
     // 5. Sort the inventors by years lived
+    let inventorsYearsLived = inventors.sort((a,b) => {
+      let yearsLivedA = a.passed - a.year;
+      let yearsLivedB = b.passed - b.year;
+      return yearsLivedB - yearsLivedA;
+    });
+    console.log(inventorsYearsLived);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -56,10 +70,23 @@
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    let peopleSorted = people.sort((a,b) => {
+      // Alphabetical order
+      return a.split(",")[0].toLowerCase().localeCompare(b.split(",")[0].toLowerCase());
+    });
+    console.log(peopleSorted);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    let dataReduced = data.reduce((obj, item) => {
+      if (!obj[item]) {
+        obj[item] = 0;
+      }
+      obj[item]++;
+      return obj;
+    }, {});
+    console.log(dataReduced);
 
   </script>
 </body>
